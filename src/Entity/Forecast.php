@@ -22,6 +22,7 @@ class Forecast
     private ?\DateTime $date = null;
 
     #[ORM\Column]
+
     private ?int $temperature = null;
 
     #[ORM\Column]

@@ -1,0 +1,63 @@
+# config/validator/Validation.yaml
+App\Entity\Forecast:
+    properties:
+        date:
+            - NotNull:
+                  groups: ['new', 'edit']
+                  message: 'Data jest wymagana.'
+            - Type:
+                  type: '\DateTimeInterface'
+                  groups: ['new', 'edit']
+
+        temperature:
+            - NotNull:
+                  groups: ['new', 'edit']
+                  message: 'Temperatura jest wymagana.'
+            - Range:
+                  min: -60
+                  max: 60
+                  notInRangeMessage: 'Temperatura musi mieścić się w przedziale od {{ min }}°C do {{ max }}°C.'
+                  groups: ['new', 'edit']
+
+        wind:
+            - NotNull:
+                  groups: ['new', 'edit']
+                  message: 'Prędkość wiatru jest wymagana.'
+            - PositiveOrZero:
+                  message: 'Wiatr nie może mieć wartości ujemnej.'
+                  groups: ['new', 'edit']
+            - Range:
+                  max: 300
+                  notInRangeMessage: 'Prędkość wiatru nie może przekraczać {{ max }} km/h.'
+                  groups: ['new', 'edit']
+
+        humidity:
+            - Range:
+                  min: 0
+                  max: 100
+                  notInRangeMessage: 'Wilgotność musi zawierać się w przedziale od {{ min }}% do {{ max }}%.'
+                  groups: ['new', 'edit']
+
+
+# config/validator/Validation.yaml
+App\Entity\Location:
+    properties:
+        latitude:
+            - NotNull:
+                  groups: ['new', 'edit']
+                  message: 'Szerokość geograficzna jest wymagana.'
+            - Range:
+                  min: -90
+                  max: 90
+                  notInRangeMessage: 'Szerokość geograficzna musi się zawierać w przedziale od {{ min }} do {{ max }}.'
+                  groups: ['new', 'edit']
+
+        longitude:
+            - NotNull:
+                  groups: ['new', 'edit']
+                  message: 'Długość geograficzna jest wymagana.'
+            - Range:
+                  min: -180
+                  max: 180
+                  notInRangeMessage: 'Długość geograficzna musi się zawierać w przedziale od {{ min }} do {{ max }}.'
+                  groups: ['new', 'edit']

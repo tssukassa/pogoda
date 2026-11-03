@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LocationRepository::class)]
 class Location
@@ -21,6 +22,8 @@ class Location
 
     #[ORM\Column(length: 2)]
     private ?string $country = null;
+
+
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 7)]
     private ?string $latitude = null;
