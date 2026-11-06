@@ -30,6 +30,15 @@ class ForecastRepository extends ServiceEntityRepository
         return $result;
     }
 
+    /*public function findByLocation(Location $location): array
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.location = :location')
+            ->setParameter('location', $location)
+            ->getQuery()
+            ->getResult();
+    }*/
+
 //    /**
 //     * @return Forecast[] Returns an array of Forecast objects
 //     */

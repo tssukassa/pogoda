@@ -14,12 +14,12 @@
                 <li>
                     <strong>{{ measure.date|date('Y-m-d') }}</strong>:
                     {{ measure.temperature }}°C,
-                    Wiatr: {{ measure.wind }} km/h,
-                    Wilgotność: {{ measure.humidity }}%,
-                    Opady: {{ measure.precipitation }} mm
+                    Wind: {{ measure.wind }} km/h,
+                    Humidity: {{ measure.humidity }}%,
+                    Precipitation: {{ measure.precipitation }} mm
                 </li>
             {% else %}
-                <li>Brak danych o prognozie pogody dla tej lokalizacji.</li>
+                <li>No weather data for this location.</li>
             {% endfor %}
         </ul>
     </main>

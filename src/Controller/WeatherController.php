@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\WeatherUtil;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -24,10 +25,11 @@ final class WeatherController extends AbstractController
         string $name,
         ?string $country,
         LocationRepository $locationRepository,
-        ForecastRepository $forecastRepository
+        WeatherUtil $util,
     ): Response
     {
-        $criteria = ['name' => ucfirst(strtolower($name))];
+        //$criteria = ['name' => ucfirst(strtolower($name))];
+        $criteria = ['name' => $name];
         if ($country) {
             $criteria['country'] = strtoupper($country);
         }
@@ -35,9 +37,9 @@ final class WeatherController extends AbstractController
         $location = $locationRepository->findOneBy($criteria);
 
         if (!$location) {
-            throw $this->createNotFoundException('Nie znaleziono takiej lokalizacji.');        }
+            throw $this->createNotFoundException('The location is not existing.');        }
 
-        $forecast = $forecastRepository->findBy(['location' => $location]);
+        $forecast = $util->getWeatherForLocation($location);
 
         return $this->render('weather/city.html.twig', [
             'location' => $location,

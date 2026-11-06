@@ -51,6 +51,7 @@
                                 {% if is_granted('ROLE_LOCATION_EDIT') %}
                                     <a href="{{ path('app_location_edit', {'id': location.id}) }}" class="btn btn-sm btn-warning">edit</a>
                                 {% endif %}
+                                <a href="{{ path('app_weather', {'name': location.name, 'country': location.country}) }}" class="btn btn-sm btn-warning text-white">weather</a>
                             </div>
                         </td>
                     </tr>

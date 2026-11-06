@@ -16,6 +16,17 @@ class LocationRepository extends ServiceEntityRepository
         parent::__construct($registry, Location::class);
     }
 
+    public function findOneByCountryAndCity(string $country, string $city): ?Location
+    {
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.country = :country')
+            ->andWhere('l.name = :city')
+            ->setParameter('country', strtoupper($country))
+            ->setParameter('city', $city)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 //    /**
 //     * @return Location[] Returns an array of Location objects
 //     */
