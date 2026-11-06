@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            padding: 2rem;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+        }
+    </style>
+{% endblock %}
+
+{% block title %}Edit Location{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <h1 class="mb-4">Edit Location</h1>
+
+        {{ form_start(form) }}
+        {{ form_row(form) }}
+
+        <div class="d-flex align-items-center gap-3 mt-4">
+            <button class="btn btn-primary">{{ button_label|default('Update') }}</button>
+            <a href="{{ path('app_location_index') }}" class="btn btn-secondary">back to list</a>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

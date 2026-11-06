@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            padding: 2rem;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+        }
+    </style>
+{% endblock %}
+
+{% block title %}Forecast{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <h1 class="mb-4">Forecast details</h1>
+
+        <table class="table table-striped align-middle">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ forecast.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ forecast.date ? forecast.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Temperature</th>
+                <td>{{ forecast.temperature }}</td>
+            </tr>
+            <tr>
+                <th>Wind</th>
+                <td>{{ forecast.wind }}</td>
+            </tr>
+            <tr>
+                <th>Humidity</th>
+                <td>{{ forecast.humidity }}</td>
+            </tr>
+            <tr>
+                <th>Precipitation</th>
+                <td>{{ forecast.precipitation }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex align-items-center justify-content-between mt-4">
+            <div class="d-flex gap-2">
+                <a href="{{ path('app_forecast_index') }}" class="btn btn-secondary">back to list</a>
+                <a href="{{ path('app_forecast_edit', {'id': forecast.id}) }}" class="btn btn-warning">edit</a>
+            </div>
+
+            {{ include('forecast/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

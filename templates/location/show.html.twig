@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            padding: 2rem;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+        }
+    </style>
+{% endblock %}
+
+{% block title %}Location{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <h1 class="mb-4">Location details</h1>
+
+        <table class="table table-striped align-middle">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ location.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ location.name }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ location.country }}</td>
+            </tr>
+            <tr>
+                <th>Latitude</th>
+                <td>{{ location.latitude }}</td>
+            </tr>
+            <tr>
+                <th>Longitude</th>
+                <td>{{ location.longitude }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex align-items-center justify-content-between mt-4">
+            <div class="d-flex gap-2">
+                <a href="{{ path('app_location_index') }}" class="btn btn-secondary">back to list</a>
+                <a href="{{ path('app_location_edit', {'id': location.id}) }}" class="btn btn-warning">edit</a>
+            </div>
+
+            {{ include('location/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}
